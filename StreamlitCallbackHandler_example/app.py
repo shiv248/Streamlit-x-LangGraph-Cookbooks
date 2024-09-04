@@ -9,7 +9,7 @@ from st_callable_util import get_streamlit_cb
 
 load_dotenv()
 
-st.title("Simple Chat Streaming")
+st.title("Implementation of StreamlitCallBackHandler with LangGraph")
 
 if not os.getenv('OPENAI_API_KEY'):
     st.sidebar.header("OPENAI_API_KEY Setup")
