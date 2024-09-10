@@ -5,7 +5,7 @@ from streamlit.runtime.scriptrunner import add_script_run_ctx, get_script_run_ct
 from streamlit.delta_generator import DeltaGenerator
 
 from langchain_core.callbacks.base import BaseCallbackHandler
-from langchain_community.callbacks.streamlit.streamlit_callback_handler import StreamlitCallbackHandler
+from langchain_community.callbacks.streamlit import StreamlitCallbackHandler
 
 
 # Define a function to wrap and add context to Streamlit's integration with LangGraph

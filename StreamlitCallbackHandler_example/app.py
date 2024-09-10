@@ -9,11 +9,18 @@ from st_callable_util import get_streamlit_cb
 
 load_dotenv()
 
-st.title("Implementation of StreamlitCallBackHandler with LangGraph")
+st.title("StreamLit 🤝 LangGraph")
+st.markdown("#### StreamlitCallBackHandler Full Implementation")
+
+"""
+In this example, we're going to be using [`StreamlitCallbackHandler`](https://api.python.langchain.com/en/latest/callbacks/langchain_community.callbacks.streamlit.streamlit_callback_handler.StreamlitCallbackHandler.html) 
+within [_LangGraph_](https://langchain-ai.github.io/langgraph/) by leveraging callbacks in our 
+graph's [`RunnableConfig`](https://api.python.langchain.com/en/latest/runnables/langchain_core.runnables.config.RunnableConfig.html).
+"""
 
 if not os.getenv('OPENAI_API_KEY'):
-    st.sidebar.header("OPENAI_API_KEY Setup")
-    api_key = st.sidebar.text_input("",type="password")
+    st.sidebar.header("OPENAI Setup")
+    api_key = st.sidebar.text_input("API_Key", type="password")
     os.environ["OPENAI_API_KEY"] = api_key
     if not api_key:
         st.info("Please enter your OPENAI_API_KEY in the sidebar.")
@@ -33,6 +40,9 @@ if prompt := st.chat_input():
     st.chat_message("user").write(prompt)
 
     with st.chat_message("assistant"):
+        msg_placeholder = st.empty()
         st_callback = get_streamlit_cb(st.empty())
         response = invoke_our_graph(st.session_state.messages, [st_callback])
-        st.session_state.messages.append(AIMessage(content=response["messages"][-1].content))
+        last_msg = response["messages"][-1].content
+        st.session_state.messages.append(AIMessage(content=last_msg))
+        msg_placeholder.write(last_msg)
