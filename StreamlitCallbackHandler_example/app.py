@@ -13,14 +13,16 @@ st.title("StreamLit 🤝 LangGraph")
 st.markdown("#### StreamlitCallBackHandler Full Implementation")
 
 """
-In this example, we're going to be using [`StreamlitCallbackHandler`](https://api.python.langchain.com/en/latest/callbacks/langchain_community.callbacks.streamlit.streamlit_callback_handler.StreamlitCallbackHandler.html) 
+In this example, we're going to be using the official [`StreamlitCallbackHandler`](https://api.python.langchain.com/en/latest/callbacks/langchain_community.callbacks.streamlit.streamlit_callback_handler.StreamlitCallbackHandler.html) 
 within [_LangGraph_](https://langchain-ai.github.io/langgraph/) by leveraging callbacks in our 
 graph's [`RunnableConfig`](https://api.python.langchain.com/en/latest/runnables/langchain_core.runnables.config.RunnableConfig.html).
+
+---
 """
 
 if not os.getenv('OPENAI_API_KEY'):
-    st.sidebar.header("OPENAI Setup")
-    api_key = st.sidebar.text_input("API_Key", type="password")
+    st.sidebar.header("OPENAI_API_KEY Setup")
+    api_key = st.sidebar.text_input(label="API Key", type="password", label_visibility="collapsed")
     os.environ["OPENAI_API_KEY"] = api_key
     if not api_key:
         st.info("Please enter your OPENAI_API_KEY in the sidebar.")
