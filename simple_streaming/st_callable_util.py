@@ -31,6 +31,7 @@ def get_streamlit_cb(parent_container: DeltaGenerator) -> BaseCallbackHandler:
                 initial_text (str): Optional initial text to start with in the container.
             """
             self.container = container  # The Streamlit container to update
+            self.token_placeholder = self.container.empty()
             self.text = initial_text  # The text content to display, starting with initial text
 
         def on_llm_new_token(self, token: str, **kwargs) -> None:
@@ -41,7 +42,7 @@ def get_streamlit_cb(parent_container: DeltaGenerator) -> BaseCallbackHandler:
                 **kwargs: Additional keyword arguments.
             """
             self.text += token  # Append the new token to the existing text
-            self.container.markdown(self.text)  # Update the Streamlit container with the updated text
+            self.token_placeholder.write(self.text)  # Update the Streamlit container with the updated text
 
     # Define a type variable for generic type hinting in the decorator, to maintain
     # input function and wrapped function return type

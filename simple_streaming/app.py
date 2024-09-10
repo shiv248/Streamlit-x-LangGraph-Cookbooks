@@ -45,6 +45,6 @@ if prompt := st.chat_input():
     st.chat_message("user").write(prompt)
 
     with st.chat_message("assistant"):
-        st_callback = get_streamlit_cb(st.empty())
+        st_callback = get_streamlit_cb(st.container())
         response = invoke_our_graph(st.session_state.messages, [st_callback])
         st.session_state.messages.append(AIMessage(content=response["messages"][-1].content))
