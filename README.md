@@ -5,11 +5,13 @@ in progress...
 
 - [x] StreamlitCallBackHandler
 
-- [x] Simple Streaming through callback
+- [x] Simple Streaming through callback and custom CallbackHandler
 
 - [ ] Simple Streaming through astream
 
-- [ ] tool calling relayed UI through streamlit using astream
+- [x] tool calling relayed UI through Streamlit using callback and custom CallbackHandler
+
+- [ ] tool calling relayed UI through Streamlit using astream
 
 - [ ] Human in the Loop
 
