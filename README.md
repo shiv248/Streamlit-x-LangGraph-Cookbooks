@@ -3,7 +3,7 @@ Streamlit and LangGraph Intersection
 
 in progress...
 
-- [x] StreamlitCallBackHandler
+- [x] Offical StreamlitCallBackHandler library Implementation
 
 - [x] Simple Streaming through callback and custom CallbackHandler
 
@@ -11,7 +11,7 @@ in progress...
 
 - [x] tool calling relayed UI through Streamlit using callback and custom CallbackHandler
 
-- [ ] tool calling relayed UI through Streamlit using astream
+- [ ] tool calling relayed UI through Streamlit using stream
 
 - [ ] Human in the Loop
 
