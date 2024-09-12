@@ -3,14 +3,14 @@ Streamlit and LangGraph Intersection
 
 in progress...
 
-- [x] Offical StreamlitCallBackHandler library Implementation
+- [x] Offical StreamlitCallBackHandler Library Implementation
 
-- [x] Simple Streaming through callback and custom CallbackHandler
+- [x] Simple Streaming Through Callback and Custom CallbackHandler
 
-- [x] tool calling relayed UI through Streamlit using callback and custom CallbackHandler
+- [x] Tool Calling Relayed through Streamlit UI Using Callback and Custom CallbackHandler
 
-- [x] tool calling relayed UI through Streamlit using LangGraph's astream
+- [x] Tool Calling Relayed through Streamlit UI Streamlit Using LangGraph's Astream
 
 - [ ] Human in the Loop
 
-- [ ] dynamic interrupts
+- [ ] Dynamic Interrupts
