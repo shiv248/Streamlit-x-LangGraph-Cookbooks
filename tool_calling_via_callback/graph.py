@@ -1,10 +1,20 @@
 from typing import Annotated, TypedDict, Any, Optional, Literal
 
 from langgraph.prebuilt import ToolNode
-from langchain_core.tools import tool
+from langchain_core.tools import tool, StructuredTool
 from langgraph.graph import START, StateGraph
 from langgraph.graph.message import AnyMessage, add_messages
+from langchain_community.utilities import DuckDuckGoSearchAPIWrapper
 from langchain_openai import ChatOpenAI
+
+search_DDG = StructuredTool.from_function(
+        name="Search",
+        func=DuckDuckGoSearchAPIWrapper().run,
+        description=f"""
+        useful for when you need to answer questions about current events, anything over the web, or more information.
+        You should ask targeted questions
+        """,
+    )
 
 @tool
 def get_weather(location: str):
@@ -19,7 +29,7 @@ def get_coolest_cities():
     """Get a list of coolest cities."""
     return "nyc, sf"
 
-tools = [get_weather, get_coolest_cities]
+tools = [get_weather, get_coolest_cities, search_DDG]
 tool_node = ToolNode(tools)
 
 class GraphsState(TypedDict):
@@ -37,7 +47,7 @@ def should_continue(state: GraphsState) -> Literal["tools", "__end__"]:
 def _call_model(state: GraphsState):
     messages = state["messages"]
     llm = ChatOpenAI(
-        temperature=0.0,
+        temperature=0.7,
         streaming=True,
     ).bind_tools(tools)
     response = llm.invoke(messages)
