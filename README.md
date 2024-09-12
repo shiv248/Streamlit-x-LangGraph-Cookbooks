@@ -7,11 +7,9 @@ in progress...
 
 - [x] Simple Streaming through callback and custom CallbackHandler
 
-- [ ] Simple Streaming through astream
-
 - [x] tool calling relayed UI through Streamlit using callback and custom CallbackHandler
 
-- [ ] tool calling relayed UI through Streamlit using stream
+- [x] tool calling relayed UI through Streamlit using LangGraph's astream
 
 - [ ] Human in the Loop
 
