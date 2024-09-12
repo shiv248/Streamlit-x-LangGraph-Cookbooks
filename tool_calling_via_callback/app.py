@@ -31,15 +31,16 @@ prompt = st.chat_input()
 if prompt is not None:
     st.session_state.expander_open = False  # Close the expander when the user starts typing
 
-with st.expander(label="Simple Chat Streaming and Tool Calling", expanded=st.session_state.expander_open):
+with st.expander(label="Simple Chat Streaming and Tool Calling Using Custom Callback Handler", expanded=st.session_state.expander_open):
     """
-    In this example, we're going to be creating our own [`BaseCallbackHandler`](https://api.python.langchain.com/en/latest/callbacks/langchain_core.callbacks.base.BaseCallbackHandler.html) called StreamHandler 
-    to stream our [_LangGraph_](https://langchain-ai.github.io/langgraph/) invocations with `token streaming` or `tool calling` and leveraging callbacks in our 
+    In this example, we're going to be creating our own [`BaseCallbackHandler`](https://api.python.langchain.com/en/latest/callbacks/langchain_core.callbacks.base.BaseCallbackHandler.html) called StreamHandler
+    to stream our [_LangGraph_](https://langchain-ai.github.io/langgraph/) invocations with `token streaming` or `tool calling` and leveraging callbacks in our
     graph's [`RunnableConfig`](https://api.python.langchain.com/en/latest/runnables/langchain_core.runnables.config.RunnableConfig.html).
 
     The BaseCallBackHandler is a [Mixin](https://www.wikiwand.com/en/articles/Mixin) overloader function which we will use
-    to implement `on_llm_new_token`, a method that run on every new generation of a token from the ChatLLM model, and
-    `on_tool_start` a method that runs on every tool call invocation even multiple tool calls.
+    to implement `on_llm_new_token`, a method that run on every new generation of a token from the ChatLLM model,
+    `on_tool_start` a method that runs on every tool call invocation even multiple tool calls, `on_tool_end`
+    a method that runs on the end of the tool call to get the final result.
     """
 
 # Initialize chat messages in session state

@@ -1,4 +1,4 @@
-from typing import Callable, TypeVar, Any, Dict
+from typing import Callable, TypeVar, Any, Dict, Optional
 import inspect
 
 from streamlit.runtime.scriptrunner import add_script_run_ctx, get_script_run_ctx
@@ -33,6 +33,7 @@ def get_streamlit_cb(parent_container: DeltaGenerator) -> BaseCallbackHandler:
             """
             self.container = container  # The Streamlit container to update
             self.thoughts_placeholder = self.container.container()  # container to hold tool_call renders
+            self.tool_output_placeholder = None # placeholder for the output of the tool call to be in the expander
             self.token_placeholder = self.container.empty()  # for token streaming
             self.text = initial_text  # The text content to display, starting with initial text
 
@@ -47,7 +48,8 @@ def get_streamlit_cb(parent_container: DeltaGenerator) -> BaseCallbackHandler:
             self.token_placeholder.write(self.text)
 
         def on_tool_start(self, serialized: Dict[str, Any], input_str: str, **kwargs: Any) -> None:
-            """Run when the tool starts running.
+            """
+            Run when the tool starts running.
             Args:
                 serialized (Dict[str, Any]): The serialized tool.
                 input_str (str): The input string.
@@ -60,8 +62,19 @@ def get_streamlit_cb(parent_container: DeltaGenerator) -> BaseCallbackHandler:
                     st.write("tool description: ", serialized["description"])
                     st.write("tool input: ")
                     st.code(input_str)
-
+                    st.write("tool output: ")
+                    self.tool_output_placeholder = st.empty()
                     s.update(label="Completed Calling Tool!", expanded=False)
+
+        def on_tool_end(self, output: Any, **kwargs: Any) -> Any:
+            """
+            Run when the tool ends.
+            Args:
+                output (Any): The output from the tool.
+                kwargs (Any): Additional keyword arguments.
+            """
+            if self.tool_output_placeholder:
+                self.tool_output_placeholder.code(output.content)
 
     # Define a type variable for generic type hinting in the decorator, to maintain
     # input function and wrapped function return type
