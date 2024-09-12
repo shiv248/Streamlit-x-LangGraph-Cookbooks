@@ -24,7 +24,6 @@ tool_node = ToolNode(tools)
 
 class GraphsState(TypedDict):
     messages: Annotated[list[AnyMessage], add_messages]
-    callbacks: Optional[list[Any]]
 
 graph = StateGraph(GraphsState)
 
