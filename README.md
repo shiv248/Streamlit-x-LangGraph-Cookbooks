@@ -9,7 +9,9 @@ in progress...
 
 - [x] Tool Calling Relayed Through Streamlit UI Using Callback and Custom CallbackHandler
 
-- [x] Tool Calling Relayed Through Streamlit UI Streamlit Using LangGraph's Astream and Custom AstreamHandler
+- [x] Tool Calling Relayed Through Streamlit UI Using LangGraph's Astream and Custom AstreamHandler
+
+- [x] Message Manipulation (deletion)
 
 - [ ] Human in the Loop
 
