@@ -13,6 +13,6 @@ in progress...
 
 - [x] Message Manipulation (deletion)
 
-- [ ] Human in the Loop
+- [x] Human in the Loop
 
-- [x] Dynamic Interrupts
+  - [x] Dynamic Interrupts
