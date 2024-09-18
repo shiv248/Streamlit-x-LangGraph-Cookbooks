@@ -15,4 +15,4 @@ in progress...
 
 - [x] Human in the Loop
 
-  - [x] Dynamic Interrupts
+  - [x] Dynamic Interrupts with Breakpoints and Custom Events
