@@ -20,6 +20,10 @@ through Streamlit.
 ---
 """
 
+# This App completely works for deletion and has the basework for edit
+# thought I wonder what is the best UI/UX to approach it
+# have not implemented edit in its entirety
+
 if not os.getenv('OPENAI_API_KEY'):
     st.sidebar.header("OPENAI_API_KEY Setup")
     api_key = st.sidebar.text_input(label="API Key", type="password", label_visibility="collapsed")
