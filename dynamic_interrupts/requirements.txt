@@ -1,3 +1,2 @@
 langgraph
 streamlit
-python-dotenv
