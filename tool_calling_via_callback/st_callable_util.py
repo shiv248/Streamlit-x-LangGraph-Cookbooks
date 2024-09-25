@@ -56,15 +56,16 @@ def get_streamlit_cb(parent_container: DeltaGenerator) -> BaseCallbackHandler:
                 kwargs (Any): Additional keyword arguments.
             """
             with self.thoughts_placeholder:
-                status_placeholder = st.empty()
+                status_placeholder = st.empty()   # Placeholder to show the tool's status
                 with status_placeholder.status("Calling Tool...", expanded=True) as s:
-                    st.write("called ", serialized["name"])
+                    st.write("called ", serialized["name"])  # Show which tool is being called
                     st.write("tool description: ", serialized["description"])
                     st.write("tool input: ")
-                    st.code(input_str)
+                    st.code(input_str)   # Display the input data sent to the tool
                     st.write("tool output: ")
+                    # Placeholder for tool output that will be updated later below
                     self.tool_output_placeholder = st.empty()
-                    s.update(label="Completed Calling Tool!", expanded=False)
+                    s.update(label="Completed Calling Tool!", expanded=False)   # Update the status once done
 
         def on_tool_end(self, output: Any, **kwargs: Any) -> Any:
             """
@@ -73,8 +74,9 @@ def get_streamlit_cb(parent_container: DeltaGenerator) -> BaseCallbackHandler:
                 output (Any): The output from the tool.
                 kwargs (Any): Additional keyword arguments.
             """
+            # We assume that `on_tool_end` comes after `on_tool_start`, meaning output_placeholder exists
             if self.tool_output_placeholder:
-                self.tool_output_placeholder.code(output.content)
+                self.tool_output_placeholder.code(output.content)   # Display the tool's output
 
     # Define a type variable for generic type hinting in the decorator, to maintain
     # input function and wrapped function return type
