@@ -10,7 +10,7 @@ from st_callable_util import get_streamlit_cb
 load_dotenv()
 
 st.title("StreamLit 🤝 LangGraph")
-st.markdown("#### Deleting Example")
+st.markdown("#### Deleting Messages Example")
 
 """
 This example is how to setup a chat with LLM, being able to delete user messages and corresponding AI responses.
