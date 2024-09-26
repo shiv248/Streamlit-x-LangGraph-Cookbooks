@@ -10,6 +10,7 @@ from st_callable_util import get_streamlit_cb  # Utility function to get a Strea
 load_dotenv()
 
 st.title("StreamLit 🤝 LangGraph")
+st.markdown("#### Chat Streaming and Tool Calling using Custom Callback")
 
 # Initialize the expander state
 if "expander_open" not in st.session_state:
