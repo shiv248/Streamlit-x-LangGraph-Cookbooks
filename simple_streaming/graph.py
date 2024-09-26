@@ -2,7 +2,7 @@ from typing import Annotated, TypedDict
 
 from langgraph.graph import START, END, StateGraph
 from langgraph.graph.message import AnyMessage, add_messages
-from langchain_openai import ChatOpenAI
+from langchain_fireworks import ChatFireworks
 
 # This is the default state same as "MessageState" TypedDict but allows us accessibility to custom keys
 class GraphsState(TypedDict):
@@ -14,9 +14,11 @@ graph = StateGraph(GraphsState)
 # Core invocation of the model
 def _call_model(state: GraphsState):
     messages = state["messages"]
-    llm = ChatOpenAI(
+    llm = ChatFireworks(
+        model="accounts/fireworks/models/firefunction-v2",
         temperature=0.0,
-        streaming=True,
+        max_tokens=256,
+        streaming=True
     )
     response = llm.invoke(messages)
     return {"messages": [response]}# add the response to the messages using LangGraph reducer paradigm

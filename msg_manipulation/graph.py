@@ -2,7 +2,7 @@ from typing import Annotated, TypedDict
 
 from langgraph.graph import START, END, StateGraph
 from langgraph.graph.message import AnyMessage, add_messages
-from langchain_openai import ChatOpenAI
+from langchain_fireworks import ChatFireworks
 
 class GraphsState(TypedDict):
     messages: Annotated[list[AnyMessage], add_messages]
@@ -11,7 +11,8 @@ graph = StateGraph(GraphsState)
 
 def _call_model(state: GraphsState):
     messages = state["messages"]
-    llm = ChatOpenAI(
+    llm = ChatFireworks(
+        model="accounts/fireworks/models/firefunction-v2",
         temperature=0.0,
         streaming=True,
     )

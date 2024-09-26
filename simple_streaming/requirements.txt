@@ -1,4 +1,4 @@
 langgraph
 streamlit
-langchain-openai
+langchain-fireworks
 python-dotenv

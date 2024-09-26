@@ -5,7 +5,7 @@ from langchain_core.tools import tool, StructuredTool
 from langgraph.graph import START, StateGraph
 from langgraph.graph.message import AnyMessage, add_messages
 from langchain_community.utilities import DuckDuckGoSearchAPIWrapper
-from langchain_openai import ChatOpenAI
+from langchain_fireworks import ChatFireworks
 
 # Define a search tool using DuckDuckGo API wrapper
 search_DDG = StructuredTool.from_function(
@@ -53,9 +53,11 @@ def should_continue(state: GraphsState) -> Literal["tools", "__end__"]:
 # Core invocation of the model
 def _call_model(state: GraphsState):
     messages = state["messages"]
-    llm = ChatOpenAI(
+    llm = ChatFireworks(
+        model="accounts/fireworks/models/firefunction-v2",
         temperature=0.7,
         streaming=True,
+        max_tokens=256
     ).bind_tools(tools)
     response = llm.invoke(messages)
     return {"messages": [response]}  # add the response to the messages using LangGraph reducer paradigm

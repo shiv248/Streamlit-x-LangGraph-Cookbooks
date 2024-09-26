@@ -24,12 +24,12 @@ through Streamlit.
 # thought I wonder what is the best UI/UX to approach it
 # have not implemented edit in its entirety
 
-if not os.getenv('OPENAI_API_KEY'):
-    st.sidebar.header("OPENAI_API_KEY Setup")
+if not os.getenv('FIREWORKS_API_KEY'):
+    st.sidebar.header("FIREWORKS_API_KEY Setup")
     api_key = st.sidebar.text_input(label="API Key", type="password", label_visibility="collapsed")
-    os.environ["OPENAI_API_KEY"] = api_key
+    os.environ["FIREWORKS_API_KEY"] = api_key
     if not api_key:
-        st.info("Please enter your OPENAI_API_KEY in the sidebar.")
+        st.info("Please enter your FIREWORKS_API_KEY in the sidebar.")
         st.stop()
 
 st.markdown("""
