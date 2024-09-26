@@ -29,10 +29,9 @@ if prompt is not None:
 
 with st.expander(label="Dynamic Interrupts", expanded=st.session_state.expander_open):
     """
-    This example will highlight the usage of `NodeInterrupt`s and `adispatch_custom_event` 
+    This example will highlight the usage of `NodeInterrupt` and `adispatch_custom_event` 
     to achieve a custom Human in the Loop experience, 
     that will dynamically ask the user for a new response based on the user's input.
-    ---
     """
 
 # Loop through all messages in the session state and render them as a chat on every st.refresh mech

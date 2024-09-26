@@ -38,7 +38,7 @@ with st.expander(label="Simple Chat Streaming and Tool Calling using LangGraph's
     """
     In this example, we're going to be creating our own events handler to stream our [_LangGraph_](https://langchain-ai.github.io/langgraph/)
     invocations with via [`astream_events (v2)`](https://langchain-ai.github.io/langgraph/how-tos/streaming-from-final-node/).
-    This one is does not use any runnable or external streamlit libraries and is asynchronous.
+    This one is does not use any callbacks or external streamlit libraries and is asynchronous.
     we've implemented `on_llm_new_token`, a method that run on every new generation of a token from the ChatLLM model, and
     `on_tool_start` a method that runs on every tool call invocation even multiple tool calls, and `on_tool_end` giving final result of tool call.
     """
