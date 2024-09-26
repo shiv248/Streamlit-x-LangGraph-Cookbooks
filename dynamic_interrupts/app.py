@@ -1,12 +1,8 @@
-from dotenv import load_dotenv
-
 from langchain_core.messages import AIMessage, HumanMessage
 import streamlit as st
 import asyncio
 
 from astream_events_handler import invoke_our_graph  # Utility function to handle events from astream_events from graph
-
-load_dotenv()
 
 st.title("StreamLit 🤝 LangGraph")
 
