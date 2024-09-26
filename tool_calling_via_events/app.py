@@ -10,6 +10,7 @@ from astream_events_handler import invoke_our_graph   # Utility function to hand
 load_dotenv()
 
 st.title("StreamLit 🤝 LangGraph")
+st.markdown("#### Chat Streaming and Tool Calling using Astream Events")
 
 # Initialize the expander state
 if "expander_open" not in st.session_state:
