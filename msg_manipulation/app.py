@@ -14,8 +14,8 @@ st.markdown("#### Deleting Example")
 
 """
 This example is how to setup a chat with LLM, being able to delete user messages and corresponding AI responses.
-I thought of implementing edit and have a good outline for it, but I can't figure out a good UI/UX to interact
-through Streamlit.
+Though the deleting is from the `st state` frontend side and the entire `state_messages` get invoked to our graph. 
+There definitely is a better way of approaching this. This is revision 1.
 
 ---
 """
