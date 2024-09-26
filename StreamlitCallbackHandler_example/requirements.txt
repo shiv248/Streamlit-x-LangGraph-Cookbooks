@@ -1,6 +1,6 @@
 langgraph
 streamlit
-langchain-fireworks
+langchain-openai
 langchain-community
 python-dotenv
 duckduckgo-search
