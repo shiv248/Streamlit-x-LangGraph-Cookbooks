@@ -16,6 +16,7 @@ def get_streamlit_cb(parent_container: DeltaGenerator) -> BaseCallbackHandler:
     and intermediate steps. This function ensures that all callback methods run within
     the Streamlit execution context, fixing the NoSessionContext() error commonly encountered
     in Streamlit callbacks.
+
     Args:
         parent_container (DeltaGenerator): The Streamlit container where the text will be rendered
                                            during the LLM interaction.
@@ -28,7 +29,7 @@ def get_streamlit_cb(parent_container: DeltaGenerator) -> BaseCallbackHandler:
     # function and wrapped function maintain the same return type.
     fn_return_type = TypeVar('fn_return_type')
 
-    # Decorator function to add the Streamlit execution context to a function
+    # Decorator function to add Streamlit's execution context to a function
     def add_streamlit_context(fn: Callable[..., fn_return_type]) -> Callable[..., fn_return_type]:
         """
         Decorator to ensure that the decorated function runs within the Streamlit execution context.
@@ -71,7 +72,8 @@ def get_streamlit_cb(parent_container: DeltaGenerator) -> BaseCallbackHandler:
     for method_name, method_func in inspect.getmembers(st_cb, predicate=inspect.ismethod):
         if method_name.startswith('on_'):  # Identify callback methods that respond to LLM events
             # Wrap each callback method with the Streamlit context setup to prevent session errors
-            setattr(st_cb, method_name, add_streamlit_context(method_func))
+            setattr(st_cb, method_name,
+                    add_streamlit_context(method_func))  # Replace the method with the wrapped version
 
     # Return the fully configured StreamlitCallbackHandler instance, now context-aware and integrated with any ChatLLM
     return st_cb
