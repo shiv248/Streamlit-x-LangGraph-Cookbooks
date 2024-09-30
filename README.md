@@ -1,5 +1,9 @@
 # Streamlit-x-LangGraph-Cookbooks
+![lg-st-logo](https://github.com/user-attachments/assets/8c367b54-b00c-4813-a801-f8d003e75738)
+
 Streamlit and LangGraph Intersection
+
+[Here](https://medium.com/@shiv248/langgraph-with-streamlit-intersection-0687995d1287) is a blog describing the motivations for this project.
 
 Each cookbook uses Streamlit to approach certain paradigms of LangGraph. Try out the demos, check out the source code, and see for yourself how they compare!
 
