@@ -12,7 +12,7 @@ graph = StateGraph(GraphsState)
 def _call_model(state: GraphsState):
     messages = state["messages"]
     llm = ChatFireworks(
-        model="accounts/fireworks/models/firefunction-v2",
+        model="accounts/fireworks/models/llama-v3-8b-instruct",
         temperature=0.0,
         streaming=True,
     )
