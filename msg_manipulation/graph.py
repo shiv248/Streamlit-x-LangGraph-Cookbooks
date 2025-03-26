@@ -1,8 +1,12 @@
+import os
+
 from typing import Annotated, TypedDict
 
 from langgraph.graph import START, END, StateGraph
 from langgraph.graph.message import AnyMessage, add_messages
 from langchain_fireworks import ChatFireworks
+
+FW_MODEL = os.getenv("fw_model", "accounts/fireworks/models/llama-v3p3-70b-instruct")
 
 class GraphsState(TypedDict):
     messages: Annotated[list[AnyMessage], add_messages]
@@ -12,7 +16,7 @@ graph = StateGraph(GraphsState)
 def _call_model(state: GraphsState):
     messages = state["messages"]
     llm = ChatFireworks(
-        model="accounts/fireworks/models/llama-v3-8b-instruct",
+        model=FW_MODEL,
         temperature=0.0,
         streaming=True,
     )

@@ -1,8 +1,12 @@
+import os
+
 from typing import Annotated, TypedDict
 
 from langgraph.graph import START, END, StateGraph
 from langgraph.graph.message import AnyMessage, add_messages
 from langchain_fireworks import ChatFireworks
+
+FW_MODEL = os.getenv("fw_model", "accounts/fireworks/models/llama-v3p3-70b-instruct")
 
 # This is the default state same as "MessageState" TypedDict but allows us accessibility to custom keys
 class GraphsState(TypedDict):
@@ -15,13 +19,13 @@ graph = StateGraph(GraphsState)
 def _call_model(state: GraphsState):
     messages = state["messages"]
     llm = ChatFireworks(
-        model="accounts/fireworks/models/llama-v3-8b-instruct",
+        model=FW_MODEL,
         temperature=0.0,
         max_tokens=256,
         streaming=True
     )
     response = llm.invoke(messages)
-    return {"messages": [response]}# add the response to the messages using LangGraph reducer paradigm
+    return {"messages": [response]} # add the response to the messages using LangGraph reducer paradigm
 
 # Define the structure (nodes and directional edges between nodes) of the graph
 graph.add_edge(START, "modelNode")
