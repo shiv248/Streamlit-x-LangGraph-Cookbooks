@@ -14,6 +14,7 @@ class GraphsState(TypedDict):
 graph = StateGraph(GraphsState)
 
 def _call_model(state: GraphsState):
+    print("USING FIREWORKS MODEL, " + FW_MODEL)
     messages = state["messages"]
     llm = ChatFireworks(
         model=FW_MODEL,
