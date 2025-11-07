@@ -13,7 +13,7 @@ search_DDG = StructuredTool.from_function(
         name="Search",
         func=DuckDuckGoSearchAPIWrapper().run,  # Executes DuckDuckGo search using the provided query
         description=f"""
-        useful for when you need to answer questions about current events. You should ask targeted questions
+        useful for when you need to answer questions about current events or realtime information. You should ask targeted questions
         """,
     )
 
