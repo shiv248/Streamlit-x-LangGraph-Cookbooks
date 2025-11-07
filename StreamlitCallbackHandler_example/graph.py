@@ -62,8 +62,7 @@ def _call_model(state: GraphsState):
         # because of st primitively visually rendering the tool results
     ).bind_tools(tools, parallel_tool_calls=False)
     prompt = f"""
-    The current UTC date and time is {datetime.utcnow()}
-    you have access to realtime information by tool calling DuckDuckGoSearch, please use it.
+    The current UTC date and time is {datetime.utcnow()}.
     
     the conversation so far is:
     {messages}
