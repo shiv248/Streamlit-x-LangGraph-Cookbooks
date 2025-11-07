@@ -1,4 +1,5 @@
 from typing import Annotated, TypedDict, Literal
+from datetime import datetime
 
 from langgraph.prebuilt import ToolNode
 from langchain_core.tools import tool, StructuredTool
@@ -60,7 +61,7 @@ def _call_model(state: GraphsState):
         # specifically for OpenAI we have to set parallel tool call to false
         # because of st primitively visually rendering the tool results
     ).bind_tools(tools, parallel_tool_calls=False)
-    response = llm.invoke(messages)
+    response = llm.invoke(f"The current date - {datetime.now()} the current conversation is {messages}. please respond.")
     return {"messages": [response]}  # add the response to the messages using LangGraph reducer paradigm
 
 # Define the structure (nodes and directional edges between nodes) of the graph
