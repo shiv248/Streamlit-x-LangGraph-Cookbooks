@@ -62,14 +62,12 @@ def _call_model(state: GraphsState):
         # because of st primitively visually rendering the tool results
     ).bind_tools(tools, parallel_tool_calls=False)
     prompt = f"""
-    The current UTC date and time is {datetime.utcnow()}
-    you have access to realtime information by tool calling DuckDuckGoSearch, please use it.  
+    The current UTC date and time is {datetime.utcnow()}.
     
     the conversation so far is:
     {messages}
-    
-    it is your turn to respond.
-    please continue the convo
+
+    please continue the convo.
     don't say anything related to "any more questions about esports or anything else, feel free to ask!" the user already knows they can ask you
     """
     response = llm.invoke(prompt)
