@@ -10,10 +10,10 @@ from langchain_openai import ChatOpenAI
 
 # Define a search tool using DuckDuckGo API wrapper
 search_DDG = StructuredTool.from_function(
-        name="Search",
+        name="DuckDuckGoSearch",
         func=DuckDuckGoSearchAPIWrapper().run,  # Executes DuckDuckGo search using the provided query
         description=f"""
-        useful for when you need to answer questions about current events or realtime information. You should ask targeted questions
+        useful for when you need to answer questions about current events or realtime information. You should ask targeted queries
         """,
     )
 
@@ -61,7 +61,17 @@ def _call_model(state: GraphsState):
         # specifically for OpenAI we have to set parallel tool call to false
         # because of st primitively visually rendering the tool results
     ).bind_tools(tools, parallel_tool_calls=False)
-    response = llm.invoke(f"The current UTC date and time is {datetime.utcnow()}, the conversation so far is {messages}. it is your turn to respond. please continue the convo")
+    prompt = f"""
+    The current UTC date and time is {datetime.utcnow()}
+    you have access to realtime information by tool calling DuckDuckGoSearch, please use it.
+    
+    the conversation so far is:
+    {messages}
+    
+    it is your turn to respond.
+    please continue the convo
+    """
+    response = llm.invoke(prompt)
     return {"messages": [response]}  # add the response to the messages using LangGraph reducer paradigm
 
 # Define the structure (nodes and directional edges between nodes) of the graph
