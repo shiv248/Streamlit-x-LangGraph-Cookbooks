@@ -70,7 +70,7 @@ def _call_model(state: GraphsState):
     
     it is your turn to respond.
     please continue the convo
-    If you have already mentioned that they can ask questions, you dont need to say it again. just respond and continue the convo.
+    don't say anything related to "any more questions about esports or anything else, feel free to ask!" the user already knows they can ask you
     """
     response = llm.invoke(prompt)
     return {"messages": [response]}  # add the response to the messages using LangGraph reducer paradigm
