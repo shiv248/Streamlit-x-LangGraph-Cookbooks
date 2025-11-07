@@ -56,7 +56,7 @@ def _call_model(state: GraphsState):
     messages = state["messages"]
     llm = ChatOpenAI(
         temperature=0.7,
-        model="gpt-3.5-turbo-0125",
+        model="gpt-4o-mini",
         streaming=True,
         # specifically for OpenAI we have to set parallel tool call to false
         # because of st primitively visually rendering the tool results
